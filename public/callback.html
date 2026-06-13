@@ -1,24 +1,42 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>SSO Capture</title>
-</head>
-<body>
+<meta charset="utf-8">
+<title>ChicksGroup SSO Redirect PoC</title>
 
-  <pre id="out"></pre>
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    padding: 24px;
+  }
+  pre {
+    background: #111;
+    color: #eee;
+    padding: 16px;
+    white-space: pre-wrap;
+  }
+</style>
 
-  <script>
-    const data = {
-      href: location.href,
-      hash: location.hash,
-      search: location.search,
-      at: new Date().toISOString()
-    };
+<h1>Captured Redirect</h1>
+<pre id="out"></pre>
 
-    document.getElementById("out").textContent = JSON.stringify(data, null, 2);
-    console.log(data);
-  </script>
+<script>
+  const data = {
+    href: location.href,
+    origin: location.origin,
+    pathname: location.pathname,
+    search: location.search,
+    hash: location.hash,
+    referrer: document.referrer,
+    userAgent: navigator.userAgent,
+    at: new Date().toISOString()
+  };
 
-</body>
-</html>
+  document.getElementById("out").textContent = JSON.stringify(data, null, 2);
+  console.log("SSO redirect PoC captured:", data);
+
+  // Optional: send to your own logging endpoint if you add one later.
+  // fetch("/api/log", {
+  //   method: "POST",
+  //   headers: {"content-type": "application/json"},
+  //   body: JSON.stringify(data)
+  // }).catch(() => {});
+</script>
