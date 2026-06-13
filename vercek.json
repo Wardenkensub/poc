@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/callback",
+      "destination": "/callback.html"
+    },
+    {
+      "source": "/chicksgold.com/callback",
+      "destination": "/callback.html"
+    },
+    {
+      "source": "/acckings.com/callback",
+      "destination": "/callback.html"
+    }
+  ]
+}
